@@ -1,0 +1,6 @@
+#ifndef VFORGELIB_LIBRARY_H
+#define VFORGELIB_LIBRARY_H
+
+void hello();
+
+#endif //VFORGELIB_LIBRARY_H
