@@ -17,7 +17,14 @@ namespace vforge
 
     public:
         Window(int width, int height);
-        void Run();
+
+        typedef void (*UpdateCallback)();
+        void Run(UpdateCallback callback);
+
+        GLFWwindow* Get()
+        {
+            return window_.operator*();
+        }
 
     };
 
