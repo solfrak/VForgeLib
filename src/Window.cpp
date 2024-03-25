@@ -37,7 +37,7 @@ namespace vforge
         }
 
         glEnable(GL_DEPTH_TEST);
-        glfwSetInputMode(*window_, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+//        glfwSetInputMode(*window_, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     }
 

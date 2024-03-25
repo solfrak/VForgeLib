@@ -1,9 +1,9 @@
 //
 // Created by samuel on 22/03/24.
 //
+#define STB_IMAGE_IMPLEMENTATION
 #include "Texture.h"
 #include "glad/glad.h"
-#define STB_IMAGE_IMPLEMENTATION
 #include <stb/stb_image.h>
 #include <iostream>
 namespace vforge
