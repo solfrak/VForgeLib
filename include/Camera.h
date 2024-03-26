@@ -128,4 +128,15 @@ private:
         Up    = glm::normalize(glm::cross(Right, Front));
     }
 };
+
+//TODO Redo the camera
+//namespace vforge
+//{
+//    class Camera
+//    {
+//    private:
+//        glm::vec3 position;
+//
+//    };
+//}
 #endif //VFORGEMAIN_CAMERA_H

@@ -18,6 +18,16 @@ add_library(VForgeLib STATIC
         include/Components/Transform.h
         include/Components/Texture2D.h
         include/Components/IComponent.h
-        include/Camera.h)
+        include/Camera.h
+        include/Components/MeshRenderer.h
+        include/Object.h
+        include/Mesh.h
+        src/Mesh.h.cpp
+        src/Object.cpp
+        include/Application.h
+        src/Application.cpp
+        include/Events/Event.h
+        include/Events/KeyEvent.h
+)
 
-target_link_libraries(VForgeLib glfw)
+target_link_libraries(VForgeLib glfw assimp)

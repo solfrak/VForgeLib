@@ -8,7 +8,7 @@
 namespace vforge
 {
 
-    Window::Window(int width, int height) {
+    Window::Window(int width, int height, const char *name) {
         width_ = width;
         height_ = height;
 
@@ -22,7 +22,7 @@ namespace vforge
             //TODO log error failed to init GLFW
         }
 
-        window_ = std::make_unique<GLFWwindow*>(glfwCreateWindow(width, height, "Hello World", nullptr, nullptr));
+        window_ = std::make_unique<GLFWwindow*>(glfwCreateWindow(width, height, name, nullptr, nullptr));
 
         if(*window_ == nullptr)
         {
@@ -37,15 +37,18 @@ namespace vforge
         }
 
         glEnable(GL_DEPTH_TEST);
-//        glfwSetInputMode(*window_, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+        glfwSetWindowUserPointer(*window_, this);
+        glfwSetKeyCallback(*window_,Window::WindowKeyCallback);
 
     }
 
 
-    void Window::Run(UpdateCallback callback) {
+    void Window::Run(UpdateCallback callback)
+    {
         while(!glfwWindowShouldClose(*window_))
         {
-            glClear(GL_COLOR_BUFFER_BIT);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             callback();
             glfwSwapBuffers(*window_);
@@ -53,6 +56,22 @@ namespace vforge
         }
         glfwTerminate();
     }
+
+    void Window::SetKeyboardCallback(KeyboardCallback callback)
+    {
+        this->keyboardCallback.push_back(callback);
+    }
+
+    void Window::WindowKeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
+    {
+        Window *window_instance = static_cast<Window*>(glfwGetWindowUserPointer(window));
+        for(auto callback : window_instance->keyboardCallback)
+        {
+            callback(new KeyPressedEvent(key, action));
+        }
+    }
+
+
 }
 
 
